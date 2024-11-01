@@ -1,6 +1,4 @@
-package Tuan6;
-
-import Tuan6.TKNganHang;
+package Tuan8_2237;
 
 import java.util.Scanner;
 
