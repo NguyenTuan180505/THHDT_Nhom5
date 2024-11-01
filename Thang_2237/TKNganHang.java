@@ -1,8 +1,8 @@
-package Tuan8_2237;
+package Thang_2237;
 
 import java.util.Scanner;
 
-public class TKNganHang {
+public class TKNganHang extends RutTienTaiKhoan  {
     protected String soTaiKhoan;
     protected String chuTaiKhoan;
     protected double soDu;
@@ -73,14 +73,7 @@ public class TKNganHang {
     }
 
 
-    public void rutTien(double tien) {
-        if(tien>0&&tien<=soDu) {
-            soDu=soDu-tien;
-            System.out.println("rut tien thanh cong,so du hien tai :"+soDu);
-        }
-        else
-            System.out.println("so tien rut vuot qua so du ");
-    }
+
     public double kiemTraSoDu() {
         return soDu;
     }
@@ -113,5 +106,22 @@ public class TKNganHang {
         System.out.println("Nhap Mat khau");
        this.matKhau=sc.next();
     }
+    public void guiTien(double tien) {
+        if(tien>0) {
+            this.soDu=this.soDu +tien;
+            System.out.println("gui tien thanh cong,so du hien tai :"+soDu);
+        }
+        else
+            System.out.println("so tien khong hop le");
+    }
 
+    @Override
+    public void RutTien(double tien,String maPin) {
+        if(tien>0&&tien<=soDu) {
+            soDu=soDu-tien;
+            System.out.println("rut tien thanh cong,so du hien tai :"+soDu);
+        }
+        else
+            System.out.println("so tien rut vuot qua so du ");
+    }
 }

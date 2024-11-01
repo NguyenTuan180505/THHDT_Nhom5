@@ -1,6 +1,5 @@
-package Tuan8_2237;
+package Thang_2237;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Lab {
@@ -64,7 +63,7 @@ public class Lab {
                         double tienRut;
                         System.out.println("Nhap So tien Ban Muon rut");
                         tienRut = sc.nextDouble();
-                        tk.rutTien(tienRut);
+                        tk.RutTien(tienRut,"0");
                         break;
                     }
 
@@ -123,7 +122,7 @@ public class Lab {
                                     tienRut = sc.nextDouble();
                                     System.out.println("Nhap Ma Pin");
                                     Pin = sc.next();
-                                    tktt.rutTien(tienRut,Pin);
+                                    tktt.RutTien(tienRut,Pin);
                                     break;
                                 }
                                 case 3:
@@ -141,6 +140,11 @@ public class Lab {
                                     break;
                                 }
 
+                                default:
+                                {
+                                    System.out.println("Lua chon khong hop le");
+                                }
+
                             }
                         } while ( lc !=0);
                         break;
@@ -156,6 +160,7 @@ public class Lab {
                             System.out.println("1.Tra cuu thong tin \n" +
                                     "2.Tinh lai \n" +
                                     "3.Nap Tien Tiet Kiem\n" +
+                                    "4.Rut tien \n" +
                                     "0.Quay lại \n");
                             System.out.println("Nhap Lua chon");
                             lc = sc.nextInt();
@@ -177,6 +182,18 @@ public class Lab {
                                     tktk.guiTien(tienNap);
                                     break;
 
+                                }
+                                case 4:
+                                {
+                                    double tienRut;
+                                    System.out.println( "Nhap So tien Ban Muon rut");
+                                    tienRut = sc.nextDouble();
+                                    tktk.RutTien(tienRut,"0");
+                                    break;
+                                }
+                                default:
+                                {
+                                    System.out.println("Lua chon khong hop le");
                                 }
                             }
 

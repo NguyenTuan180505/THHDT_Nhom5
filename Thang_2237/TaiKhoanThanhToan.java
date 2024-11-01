@@ -1,4 +1,4 @@
-package Tuan8_2237;
+package Thang_2237;
 
 import java.util.Scanner;
 
@@ -68,28 +68,22 @@ class TaiKhoanThanhToan extends TKNganHang {
     }
 
     // Phương thức rút tiền có kiểm tra hạn mức
-
-    public void rutTien(double soTien,String maPin) {
+    @Override
+    public void RutTien(double soTien,String maPin) {
         if(!maPin.equals(this.maPin)){
             System.out.println("Ma Pin Khong chinh xac");
         }
        else if (soTien > hanMucRutTien) {
             System.out.println("Số tiền rút vượt quá hạn mức cho phép.");
         } else {
-
-            super.rutTien(soTien);
-
+            this.soDu= this.soDu - soTien;
+            System.out.println("Rut tien thanh cong So du hien tai la: " + this.soDu);
         }
     }
 
     // Hiển thị thông tin tài khoản thanh toán
     public void guiTien(double tien) {
-        if(tien>0) {
-            soDu=soDu +tien;
-            System.out.println("gui tien thanh cong,so du hien tai :"+soDu);
-        }
-        else
-            System.out.println("so tien khong hop le");
+            super.guiTien(tien);
     }
     @Override
     public String toString() {
