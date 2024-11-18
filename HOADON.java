@@ -9,10 +9,31 @@ public class HOADON implements Serializable {
     private LocalDate ngayLap = LocalDate.now();
     private List<CHITIETHOADON> chiTietHoaDon  = new ArrayList<>();
     private double tongTien;
+    private String diaChiGiaoHang;
     private String maNV;
     private  String maKH;
     private  TrangThai trangThaiDH;
     private String moTa;
+    private HinhThucThanhToan hinhThucThanhToan;
+
+    public HOADON() {
+    }
+
+    public String getDiaChiGiaoHang() {
+        return diaChiGiaoHang;
+    }
+
+    public void setDiaChiGiaoHang(String diaChiGiaoHang) {
+        this.diaChiGiaoHang = diaChiGiaoHang;
+    }
+
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
 
     public String getMoTa() {
         return moTa;
@@ -39,9 +60,11 @@ public class HOADON implements Serializable {
         this.trangThaiDH= trangThaiDH;
     }
 
-    public HOADON(String maHD,  String khachhang, TrangThai trangThaiDH) {
+    public HOADON(String maHD,  String khachhang,String diaChiGiaoHang, HinhThucThanhToan hinhThucThanhToan, TrangThai trangThaiDH) {
         this.maHD = maHD;
         this.maKH = khachhang;
+        this.hinhThucThanhToan=hinhThucThanhToan;
+        this.diaChiGiaoHang = diaChiGiaoHang;
         this.trangThaiDH = trangThaiDH;
     }
 
@@ -146,7 +169,9 @@ public class HOADON implements Serializable {
                 ", nhanvien=" + maNV +
                 ", MaKH=" + maKH +
                 ", trangThaiDH=" + trangThaiDH +
-                " Mota=" + moTa+
+                ", Mota=" + moTa+
+                ", HinhThucThanhToan=" + hinhThucThanhToan+
+                ", DiaChiGiaoHang=" + diaChiGiaoHang+
                 '}';
     }
 }

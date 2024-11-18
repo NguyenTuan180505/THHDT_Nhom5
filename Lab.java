@@ -8,23 +8,29 @@ public class Lab {
         catch (Exception e) {
             System.out.println(e);
         }
+
+
         ds.Xuat();
         PERSON person = new PERSON();
+        person.setId("123");
         person.setRole(VAITRO.NGUOIQUANTRI);
         person.setEmail("admin@gmail.com");
         person.setPassword("123");
         ds.themTK(person);
-        DanhSachHoaDon danhSachHoaDon = new DanhSachHoaDon();
-        try {
-            danhSachHoaDon.docFile();
 
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-  for(HOADON hoadon: danhSachHoaDon.getDsHoaDon()){
-      System.out.println(hoadon);
-  }
+
+//
+//        DanhSachHoaDon danhSachHoaDon = new DanhSachHoaDon();
+//        try {
+//            danhSachHoaDon.docFile();
+//
+//        }
+//        catch (Exception e) {
+//            System.out.println(e);
+//        }
+//  for(HOADON hoadon: danhSachHoaDon.getDsHoaDon()){
+//      System.out.println(hoadon);
+//  }
 
     }
 }

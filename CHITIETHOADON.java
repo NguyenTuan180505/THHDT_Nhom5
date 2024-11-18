@@ -9,7 +9,9 @@ public class CHITIETHOADON implements Serializable {
     public CHITIETHOADON(SANPHAM sanPham, double soLuong) {
         this.sanPham = sanPham;
         this.soLuong = soLuong;
-        this.thanhTien = soLuong * sanPham.getGiaBan();
+        this.thanhTien = sanPham.getMaGiamGia()!=null?
+                soLuong * (sanPham.getGiaBan()- sanPham.getGiaBan()*(sanPham.getMaGiamGia().getPhanTram()/100))
+                : sanPham.getGiaBan()*soLuong;
     }
 
     // Getters và Setters

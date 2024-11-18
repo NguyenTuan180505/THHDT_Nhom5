@@ -10,6 +10,7 @@ public class test {
         KHACHHANG kh = new KHACHHANG();
         NHANVIENBANHANG nhanvienbanhang = new NHANVIENBANHANG();
         NHANVIENKHO nhanvienkho = new NHANVIENKHO();
+        NHANVIENGIAOHANG nhanviengiaohang = new NHANVIENGIAOHANG();
         Scanner sc = new Scanner(System.in);
         int dn;
         try {
@@ -55,7 +56,13 @@ public class test {
                     } else if (obj instanceof NHANVIENKHO) {
                         nhanvienkho = (NHANVIENKHO) obj;
                         break;
-                    } else if(obj instanceof PERSON) {
+
+                    }
+                    else if(obj instanceof NHANVIENGIAOHANG) {
+                        nhanviengiaohang = (NHANVIENGIAOHANG) obj;
+                        break;
+                    }
+                    else if(obj instanceof PERSON) {
                         tk = (PERSON) obj;
                         break;
                     }
@@ -96,7 +103,12 @@ public class test {
 
                     } else if (obj instanceof NHANVIENKHO) {
                         nhanvienkho = (NHANVIENKHO) obj;
-                    } else {
+                    }
+                    else if(obj instanceof NHANVIENGIAOHANG) {
+                        nhanviengiaohang = (NHANVIENGIAOHANG) obj;
+                        break;
+                    }
+                    else {
                         tk = (PERSON) obj;
                     }
                     if (obj == null) {
@@ -131,6 +143,8 @@ public class test {
                         "4.Xoa San Pham ra Gio Hang \n" +
                         "5.Tra cuu lich su Mua Hang\n" +
                         "6.Dat hang \n" +
+                        "7.Tra Hang\n"+
+                        "8.Danh Gia San Pham \n"+
                         "9.Xoa Tai Khoan \n" +
                         "0.Thoat chuong trinh \n");
                 System.out.println("Nhap Lua chon");
@@ -194,6 +208,24 @@ public class test {
                         kh.datHang(giohang,kh);
                         break;
                     }
+                    case 7:{
+                        kh.TraHang(kh);
+
+                        break;
+                    }
+                    case 8:{
+                        kh.DanhGia(kh);
+                        break;
+                    }
+                    case 9:{
+                        break;
+                    }
+                    case 0:{
+                        System.out.println("Dang xuat");
+                        break;
+                    }
+                    default:
+                        System.out.println("Lua chon khong hop le ");
                 }
 
             } while (choice != 0);
@@ -202,8 +234,9 @@ public class test {
             int choice;
             do {
                 System.out.println("\n============MENU==========");
-                System.out.println("1.Tao tai khoan nhan vien ban hang" +
-                        "2.Tao tai Khoan nhan vien kho" +
+                System.out.println("1.Tao tai khoan nhan vien ban hang\n" +
+                        "2.Tao tai Khoan nhan vien kho\n" +
+                        "3.Tao tai khoan nhan vien kho \n"+
                         "0.Thoat chuong trinh \n");
                 System.out.println("Nhap Lua chon");
                 choice = sc.nextInt();
@@ -221,6 +254,10 @@ public class test {
                     }
                     case 2: {
                         ds.taoTKNhanVienKho();
+                        break;
+                    }
+                    case 3:{
+                        ds.taoTkNhanVienGiaoHang();
                         break;
                     }
                 }
@@ -319,6 +356,22 @@ public class test {
                         System.out.println("Lua chon khong hop le");
                 }
             } while (choice != 0);
+        } else if (nhanviengiaohang.getEmail() != null) {
+            int choice;
+            do {
+                System.out.println("\n============MENU==========");
+                System.out.println("1.Xu li don giao \n" +
+                        "0.Thoat chuong trinh \n");
+                System.out.println("Nhap Lua chon");
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1:{
+                        nhanviengiaohang.xuLiDonGiao();
+                    }
+                }
+            } while (choice != 0);
+
+
         }
     }
     }

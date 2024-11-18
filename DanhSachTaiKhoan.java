@@ -108,6 +108,9 @@ public class DanhSachTaiKhoan {
         }
 
     }
+    public void remove(){
+        this.dsTaiKhoan.removeIf(e->e instanceof PERSON);
+    }
     public  void Xuat (){
         if(this.dsTaiKhoan.isEmpty()){
             System.out.println("Danh sach rong");
@@ -130,6 +133,10 @@ public class DanhSachTaiKhoan {
           }
           else if(object instanceof NHANVIENBANHANG){
               return  (NHANVIENBANHANG)object;
+          }
+          else if(object instanceof NHANVIENGIAOHANG) {
+              return  (NHANVIENGIAOHANG) object;
+
           }
           else {
               return  (PERSON)object;
@@ -223,5 +230,17 @@ public class DanhSachTaiKhoan {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    public void taoTkNhanVienGiaoHang(){
+        NHANVIENGIAOHANG nhanviengiaohang =new NHANVIENGIAOHANG();
+        nhanviengiaohang.themMoi();
+        this.dsTaiKhoan.add(nhanviengiaohang);
+        try {
+            this.ghiFile();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

@@ -87,13 +87,13 @@ public class NHANVIENBANHANG extends  NHANVIEN {
         if(sanpham != null){
             MAGIAMGIA magiamgia =danhSachMaGiamGia.timMGG(mgg);
             if(magiamgia != null){
-                List<MAGIAMGIA> magiamgiaList = sanpham.getMaGiamGia();
-                if(magiamgiaList.contains(mgg))
+                MAGIAMGIA magiamgiaSp = sanpham.getMaGiamGia();
+                if(magiamgiaSp.equals(magiamgia))
                     System.out.println("Ma Giam Gia da ton tai");
                 else
                 {
-                    magiamgiaList.add(magiamgia);
-                    sanpham.setMaGiamGia(magiamgiaList);
+                    sanpham.setMaGiamGia(magiamgia);
+                    danhSachSanPham.capNhatSanPham(sanpham);
                     try {
                         danhSachSanPham.ghiFile();
                     } catch (Exception e) {
@@ -126,32 +126,17 @@ public class NHANVIENBANHANG extends  NHANVIEN {
             System.out.println(e);
         }
         danhSachSanPham.xuatSanPham();
-        String mgg,maSp;
-        System.out.println("Nhap ma giam gia g0 ");
-        mgg= sc.next();
+        String maSp;
         System.out.println("Nhap San Pham muon go ");
         maSp= sc.next();
         SANPHAM sanpham = danhSachSanPham.timSanPham(maSp);
         if(sanpham != null){
-            MAGIAMGIA magiamgia =danhSachMaGiamGia.timMGG(mgg);
-            if(magiamgia != null){
-                List<MAGIAMGIA> magiamgiaList = sanpham.getMaGiamGia();
-                if(magiamgiaList.contains(mgg)){
-                    magiamgiaList.removeIf(e->e.getMa().equals(mgg));
-                    sanpham.setMaGiamGia(magiamgiaList);
-                    try {
-                        danhSachMaGiamGia.ghiFile();
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
-                }
-                else
-                {
-                        System.out.println("San pham khong chua ma giam gia nay");
-                }
-            }
-            else {
-                System.out.println("Nhap ma giam gia khong hop le");
+            sanpham.setMaGiamGia(null);
+            danhSachSanPham.capNhatSanPham(sanpham);
+            try {
+                danhSachMaGiamGia.docFile();
+            } catch (Exception e) {
+                System.out.println(e);
             }
         }
         else {

@@ -203,6 +203,10 @@ public class DanhSachHoaDon {
             System.out.println(e.getMessage());
         }
     }
+    public HOADON timHoaDon(String maHd)
+    {
+        return  this.dsHoaDon.stream().filter(e->e.getMaHD().equals(maHd)).findFirst().orElse(null);
+    }
 public  void themHoaDon(HOADON hoadon){
         this.dsHoaDon.add(hoadon);
 }

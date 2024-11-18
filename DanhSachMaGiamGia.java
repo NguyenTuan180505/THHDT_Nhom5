@@ -35,6 +35,11 @@ public class DanhSachMaGiamGia {
     public void themMGG(MAGIAMGIA magiamgia){
         this.danhSachMaGG.add(magiamgia);
     }
+    public void xuatMGG(){
+        for(MAGIAMGIA magiamgia : this.danhSachMaGG){
+            System.out.println(magiamgia);
+        }
+    }
 
     public void docFile() throws Exception {
         this.danhSachMaGG = new ArrayList<>(); // Khởi tạo lại danh sách

@@ -9,13 +9,21 @@ public class SANPHAM implements Serializable {
         private double giaBan;
         private double giaNhap;
         private double soLuong;
-        private List<MAGIAMGIA> maGiamGia;
-
-    public List<MAGIAMGIA> getMaGiamGia() {
+        private MAGIAMGIA maGiamGia;
+       private  List<DANHGIA> danhGia = new ArrayList<>();
+    public MAGIAMGIA getMaGiamGia() {
         return maGiamGia;
     }
 
-    public void setMaGiamGia(List<MAGIAMGIA> maGiamGia) {
+    public List<DANHGIA> getDanhGia() {
+        return danhGia;
+    }
+
+    public void setDanhGia(List<DANHGIA> danhGia) {
+        this.danhGia = danhGia;
+    }
+
+    public void setMaGiamGia(MAGIAMGIA maGiamGia) {
         this.maGiamGia = maGiamGia;
     }
 
@@ -29,7 +37,7 @@ public class SANPHAM implements Serializable {
         }
 
         public SANPHAM() {
-            maGiamGia = new ArrayList<MAGIAMGIA>();
+
         }
         public void taoSanPham (){
             Scanner sc = new Scanner(System.in);
