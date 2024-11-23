@@ -1,3 +1,6 @@
+import DanhSach.DanhSachTaiKhoan;
+import TaiKhoan.PERSON;
+import Enum.VAITRO;
 public class Lab {
     public static void main(String[] args) {
         DanhSachTaiKhoan ds = new DanhSachTaiKhoan();
@@ -11,16 +14,16 @@ public class Lab {
 
 
         ds.Xuat();
-        PERSON person = new PERSON();
-        person.setId("123");
-        person.setRole(VAITRO.NGUOIQUANTRI);
-        person.setEmail("admin@gmail.com");
-        person.setPassword("123");
-        ds.themTK(person);
+//        PERSON person = new PERSON();
+//        person.setId("123");
+//        person.setRole(VAITRO.NGUOIQUANTRI);
+//        person.setEmail("admin@gmail.com");
+//        person.setPassword("123");
+//        ds.themTK(person);
 
 
 //
-//        DanhSachHoaDon danhSachHoaDon = new DanhSachHoaDon();
+//        DanhSach.DanhSachHoaDon danhSachHoaDon = new DanhSach.DanhSachHoaDon();
 //        try {
 //            danhSachHoaDon.docFile();
 //
@@ -28,7 +31,7 @@ public class Lab {
 //        catch (Exception e) {
 //            System.out.println(e);
 //        }
-//  for(HOADON hoadon: danhSachHoaDon.getDsHoaDon()){
+//  for(BanHang.HOADON hoadon: danhSachHoaDon.getDsHoaDon()){
 //      System.out.println(hoadon);
 //  }
 

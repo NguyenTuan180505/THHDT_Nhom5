@@ -1,3 +1,10 @@
+import BanHang.GIOHANG;
+import BanHang.HOADON;
+import BanHang.SANPHAM;
+import DanhSach.DanhSachSanPham;
+import DanhSach.DanhSachTaiKhoan;
+import TaiKhoan.*;
+import Enum.VAITRO;
 import java.util.List;
 import java.util.Scanner;
 
@@ -274,6 +281,7 @@ public class test {
                         "4.Go ma giam gia khoi san pham\n"+
                         "5.Xoa ma giam gia\n"+
                         "6.Thong Ke Doanh thu\n"+
+                        "7.Xu li don tra\n" +
                         "0.Thoat chuong trinh \n");
                 System.out.println("Nhap Lua chon");
                 choice = sc.nextInt();
@@ -299,6 +307,10 @@ public class test {
                         break;
                     }
                     case 6:{
+                        break;
+                    }
+                    case 7:{
+                        nhanvienbanhang.xuLiTraHang();
                         break;
                     }
                 }
