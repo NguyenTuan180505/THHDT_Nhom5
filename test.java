@@ -174,9 +174,9 @@ public class test {
                         String maSp;
                         while (true) {
                             double soLuong;
-                            System.out.println("Nhap san pham ban muon mua nhap thoat de thoat");
+                            System.out.println("Nhap san pham ban muon mua (nhap 0 de thoat)");
                             maSp = sc.next();
-                            if (maSp.equals("Thoat"))
+                            if (maSp.equals("0"))
                                 break;
                             System.out.println("Nhap so luong");
                             soLuong = sc.nextDouble();
@@ -243,7 +243,7 @@ public class test {
                 System.out.println("\n============MENU==========");
                 System.out.println("1.Tao tai khoan nhan vien ban hang\n" +
                         "2.Tao tai Khoan nhan vien kho\n" +
-                        "3.Tao tai khoan nhan vien kho \n"+
+                        "3.Tao tai khoan nhan vien giao hang \n"+
                         "0.Thoat chuong trinh \n");
                 System.out.println("Nhap Lua chon");
                 choice = sc.nextInt();
@@ -279,9 +279,8 @@ public class test {
                         "2.Tao ma giam gia\n" +
                         "3.Them ma giam gia cho san pham\n"+
                         "4.Go ma giam gia khoi san pham\n"+
-                        "5.Xoa ma giam gia\n"+
-                        "6.Thong Ke Doanh thu\n"+
-                        "7.Xu li don tra\n" +
+                        "5.Thong Ke Doanh thu\n"+
+                        "6.Xu li don tra\n" +
                         "0.Thoat chuong trinh \n");
                 System.out.println("Nhap Lua chon");
                 choice = sc.nextInt();
@@ -304,12 +303,11 @@ public class test {
                         break;
                     }
                     case 5:{
+                        System.out.println("Nhap vao nam muon thong ke");
+                        nhanvienbanhang.thongKeDoangThu(sc.nextInt());
                         break;
                     }
                     case 6:{
-                        break;
-                    }
-                    case 7:{
                         nhanvienbanhang.xuLiTraHang();
                         break;
                     }

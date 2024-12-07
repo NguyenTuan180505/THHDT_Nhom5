@@ -6,6 +6,7 @@ public class CHITIETGIOHANG {
     private SANPHAM sanpham;
     private  double soLuong;
 
+
     public SANPHAM getSanpham() {
         return sanpham;
     }

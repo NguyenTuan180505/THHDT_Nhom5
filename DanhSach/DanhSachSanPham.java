@@ -66,6 +66,7 @@ public class DanhSachSanPham implements DocGhiFile {
     public void xuatSanPham(){
         for (SANPHAM sp : this.dsSanPham) {
             System.out.println(sp);
+            System.out.println("---------------------------------");
         }
     }
 

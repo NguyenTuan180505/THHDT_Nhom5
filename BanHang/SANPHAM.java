@@ -1,9 +1,12 @@
 package BanHang;
 
+import Service.DinhDangTien;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class SANPHAM implements Serializable {
         private String maSP;
@@ -95,14 +98,25 @@ public class SANPHAM implements Serializable {
         public void setSoLuong(double soLuong) {
             this.soLuong = soLuong;
         }
-        @Override
-        public String toString() {
-            return "SanPham{" +
-                    "maSP='" + maSP + '\'' +
-                    ", tenSP='" + tenSP + '\'' +
-                    ", gia=" + giaBan +
-                    ", soLuong=" + (soLuong > 0 ? soLuong : "Het Hang") +
-                    '}';
-        }
+
+    @Override
+    public String toString() {
+        String danhGiaStr = (danhGia != null && !danhGia.isEmpty())
+                ? danhGia.stream().map(d -> "Đánh giá bởi khách hàng: " + d.getKhachHangId() + "\n" +
+                        "Số sao: " + d.getSoSao() + "\n" +
+                        "Nội dung: " + d.getNoiDung() + "\n" +
+                        "Ngày: " + d.getNgayDanhGia())
+                .collect(Collectors.joining("\n\n"))
+                : "Chưa có đánh giá";
+        return "SANPHAM{" +
+                "maSP='" + maSP + '\'' +
+                ", tenSP='" + tenSP + '\'' +
+                ", giaBan=" + DinhDangTien.chuyenDoi(giaBan) +
+                ", giaNhap=" + DinhDangTien.chuyenDoi(giaNhap) +
+                ", soLuong=" + (soLuong > 0 ? soLuong : "Het Hang") +
+                ", maGiamGia=" + maGiamGia +
+                ", \ndanhGia=" + danhGiaStr +
+                '}';
     }
+}
 

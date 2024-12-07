@@ -9,6 +9,7 @@ import Enum.TrangThai;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DanhSachHoaDon implements DocGhiFile {
     List<HOADON> dsHoaDon = new ArrayList<HOADON>();
@@ -151,10 +152,13 @@ public class DanhSachHoaDon implements DocGhiFile {
         catch (Exception e) {
             System.out.println(e);
         }
+        Scanner sc = new Scanner(System.in);
         for(String maHd : mahd){
             HOADON hoadon = this.dsHoaDon.stream().filter(e->e.getMaHD().equals(maHd)).findFirst().orElse(null);
             if(hoadon != null){
                 hoadon.setTrangThaiDH(TrangThai.DANGGIAO);
+                System.out.println("Nhap so ngay giao cho hoa don" + hoadon.getMaHD());
+                hoadon.setNgayGiao(hoadon.getNgayLap().plusDays(sc.nextInt()));
                 this.capNhatHoaDon(hoadon);
                 KHACHHANG kh = danhSachTaiKhoan.timMaKH(hoadon.getMaKH());
                 List<HOADON> lichsu= kh.getLichSuMuaHang();

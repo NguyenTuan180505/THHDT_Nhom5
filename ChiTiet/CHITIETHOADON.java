@@ -1,6 +1,7 @@
 package ChiTiet;
 
 import BanHang.SANPHAM;
+import Service.DinhDangTien;
 
 import java.io.Serializable;
 
@@ -37,9 +38,10 @@ public class CHITIETHOADON implements Serializable {
     @Override
     public String toString() {
         return "ChiTietHoaDon{" +
-                "sanPham=" + sanPham.getTenSP() +
+                "MaSP=" + sanPham.getMaSP() +
+                ", sanPham=" + sanPham.getTenSP() +
                 ", soLuong=" + soLuong +
-                ", thanhTien=" + thanhTien +
+                ", thanhTien=" + DinhDangTien.chuyenDoi(thanhTien) +
                 '}';
     }
 }

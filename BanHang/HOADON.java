@@ -4,14 +4,18 @@ import ChiTiet.CHITIETHOADON;
 import DanhSach.DanhSachSanPham;
 import Enum.TrangThai;
 import  Enum.HinhThucThanhToan;
+import Service.DinhDangTien;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class HOADON implements Serializable {
     private String maHD;
     private LocalDate ngayLap = LocalDate.now();
+    private LocalDate ngayGiao ;
     private List<CHITIETHOADON> chiTietHoaDon  = new ArrayList<>();
     private double tongTien;
     private String diaChiGiaoHang;
@@ -22,6 +26,14 @@ public class HOADON implements Serializable {
     private HinhThucThanhToan hinhThucThanhToan;
 
     public HOADON() {
+    }
+
+    public LocalDate getNgayGiao() {
+        return ngayGiao;
+    }
+
+    public void setNgayGiao(LocalDate ngayGiao) {
+        this.ngayGiao = ngayGiao;
     }
 
     public void setHinhThucThanhToan(HinhThucThanhToan hinhThucThanhToan) {
@@ -180,8 +192,9 @@ public class HOADON implements Serializable {
         return "BanHang.HOADON{" +
                 "maHD='" + maHD + '\'' +
                 ", ngayLap=" + ngayLap +
+                ", ngayGiao=" + (ngayGiao!= null ? ngayGiao : "Dang cho xu li") +
                 ", chiTietHoaDon=" + chiTietHoaDon +
-                ", tongTien=" + tongTien +
+                ", tongTien=" + DinhDangTien.chuyenDoi(tongTien) +
                 ", nhanvien=" + maNV +
                 ", MaKH=" + maKH +
                 ", trangThaiDH=" + trangThaiDH +

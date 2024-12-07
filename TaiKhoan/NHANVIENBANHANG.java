@@ -13,7 +13,9 @@ import Enum.TrangThai;
 import Enum.HinhThucThanhToan;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class NHANVIENBANHANG extends  NHANVIEN {
 
@@ -289,6 +291,27 @@ public class NHANVIENBANHANG extends  NHANVIEN {
                 }
             }
         }while (choice!=0);
+
+    }
+    public void thongKeDoangThu (int nam) {
+        DanhSachHoaDon danhSachHoaDon = new DanhSachHoaDon();
+        try {
+            danhSachHoaDon.docFile();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        List<HOADON> dsHdThanhCong = danhSachHoaDon.getDsHoaDon().stream().filter(e -> e.getTrangThaiDH().equals(TrangThai.GIAOTHANHCONG) && e.getNgayLap().getYear() == nam).toList();
+        Map<Integer, Double> doanhThuTheoThang = null;
+        if (!dsHdThanhCong.isEmpty()) {
+            doanhThuTheoThang = dsHdThanhCong.stream().collect(Collectors.groupingBy(
+                    // Nhóm theo tháng và năm
+                    hd -> hd.getNgayLap().getMonthValue(),
+                    Collectors.summingDouble(HOADON::getTongTien)
+            ));
+        }
+        doanhThuTheoThang.forEach((thang, doanhThu) ->
+                System.out.println("Tháng " + thang + " | Doanh thu: " + doanhThu));
+
 
     }
     @Override

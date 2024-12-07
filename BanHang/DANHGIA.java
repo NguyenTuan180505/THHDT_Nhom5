@@ -84,10 +84,10 @@ public class DANHGIA implements Serializable {
     }
     @Override
     public String toString() {
-        return "Đánh giá bởi khách hàng " + khachHangId +
-                " | Số sao: " + soSao +
-                " | Nội dung: " + noiDung +
-                " | Ngày: " + ngayDanhGia;
+        return "Đánh giá bởi khách hàng: " + khachHangId + "\n" +
+                "Số sao: " + soSao + "\n" +
+                "Nội dung: " + noiDung + "\n" +
+                "Ngày: " + ngayDanhGia;
     }
 
 }
