@@ -60,9 +60,8 @@ public class KHACHHANG extends PERSON {
     public void capNhatDiemTichLuy(double soTien) {
         this.diemTichLuy += (int) (soTien / 100000);
     }
-    public  void datHang(GIOHANG giohang, KHACHHANG khachhang){
-        if(giohang.getDsGioHang().isEmpty())
-        {
+    public  void datHang(GIOHANG giohang, KHACHHANG khachhang) {
+        if (giohang.getDsGioHang().isEmpty()) {
             System.out.println("gio hang trong vui long them san pham vao gio hang");
             return;
         }
@@ -71,128 +70,159 @@ public class KHACHHANG extends PERSON {
         try {
             ds.docFile();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
-        DanhSachHoaDon danhSachHoaDon  = new DanhSachHoaDon();
+        DanhSachHoaDon danhSachHoaDon = new DanhSachHoaDon();
         try {
             danhSachHoaDon.docFile();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         DanhSachMaGiamGia danhSachMaGiamGia = new DanhSachMaGiamGia();
         try {
             danhSachMaGiamGia.docFile();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
-boolean dathanhtoan =false;
-while (true) {
-    int choice;
-    if(dathanhtoan)
-        break;
-    System.out.println("\n============MENU==========");
-    System.out.println("1.Thanh toan khi nhan hang \n" +
-            "2.Thanh toan bang the ngan hang \n" +
-            "4.Kiem tra ma giam gia\n" +
-            "3.Thoat\n"
-    );
-
-    HOADON hoadon = new HOADON();
-    System.out.println("Nhap lua chon");
-    choice = sc.nextInt();
-    sc.nextLine();
-    switch (choice) {
-        case 1: {
-            System.out.println("Nhap dia chi giao hang");
-            String dc = sc.nextLine();
-
-            hoadon = new HOADON(TaoMaNgauNhien.generateRandomString(5), khachhang.getId(), dc, HinhThucThanhToan.COD, TrangThai.CHOXULI);
-            for (CHITIETGIOHANG chitietgiohang : giohang.getDsGioHang()) {
-                hoadon.themChiTietHoaDon(chitietgiohang.getSanpham(), chitietgiohang.getSoLuong());
+        boolean dathanhtoan = false;
+        double diemtichluy =0;
+        int lc;
+        do {
+            System.out.println("\nBan co muon su dung diem tich luy");
+            System.out.println("1.Co\n" +
+                    "2.Khong \n" +
+                    "3.Tra cuu diem tich luy \n");
+            System.out.println("Nhap lua chon");
+            lc = sc.nextInt();
+            sc.nextLine();
+            switch (lc) {
+                case 1:
+                    System.out.println("Nhap diem tich luy muon su dung");
+                    diemtichluy = sc.nextDouble();
+                    if(diemtichluy <= khachhang.getDiemTichLuy())
+                        break;
+                    else
+                        System.out.println("so diem tich luy cua ban khong du ");
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    System.out.println(khachhang.getDiemTichLuy());
+                    break;
             }
-            hoadon.setTongTien(hoadon.tinhTongTien());
-            danhSachHoaDon.themHoaDon(hoadon);
-            this.lichSuMuaHang.add(hoadon);
-            ds.capnhatTK(this);
-            dathanhtoan =true;
-            break;
-        }
-        case 2: {
-            System.out.println("Nhap dia chi giao hang");
-            String dc = sc.nextLine();
-            if (khachhang.getTkNganHang() != null) {
-                hoadon = new HOADON(TaoMaNgauNhien.generateRandomString(5), khachhang.getId(), dc, HinhThucThanhToan.NGANHANG, TrangThai.CHOXULI);
+        } while (lc != 0 && lc != 2 && lc!=1);
+        while (true) {
+            int choice;
+            if (dathanhtoan)
+                break;
+            System.out.println("\n============MENU==========");
+            System.out.println("1.Thanh toan khi nhan hang \n" +
+                    "2.Thanh toan bang the ngan hang \n" +
+                    "3.Thoat\n"
+            );
 
-                for (CHITIETGIOHANG chitietgiohang : giohang.getDsGioHang()) {
+            HOADON hoadon = new HOADON();
+            System.out.println("Nhap lua chon");
+            choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1: {
+                    System.out.println("Nhap dia chi giao hang");
+                    String dc = sc.nextLine();
 
-                    hoadon.themChiTietHoaDon(chitietgiohang.getSanpham(), chitietgiohang.getSoLuong());
-                }
-                hoadon.setTongTien(hoadon.tinhTongTien());
-                if (khachhang.getTkNganHang().thanhToan(hoadon.getTongTien())) {
+                    hoadon = new HOADON(TaoMaNgauNhien.generateRandomString(5), khachhang.getId(), dc, HinhThucThanhToan.COD, TrangThai.CHOXULI);
+                    for (CHITIETGIOHANG chitietgiohang : giohang.getDsGioHang()) {
+                        hoadon.themChiTietHoaDon(chitietgiohang.getSanpham(), chitietgiohang.getSoLuong());
+                    }
+                    if( diemtichluy != 0){
+                        hoadon.setTongTien(hoadon.tinhTongTien() - diemtichluy);
+                        khachhang.setDiemTichLuy(khachhang.getDiemTichLuy() - diemtichluy);
+                    }
+                    else
+                    hoadon.setTongTien(hoadon.tinhTongTien());
                     danhSachHoaDon.themHoaDon(hoadon);
                     this.lichSuMuaHang.add(hoadon);
-                    ds.capnhatTK(this);
-                    dathanhtoan =true;
-                } else {
-                    System.out.println("Khong du so du trong tai khoan");
+                    ds.capnhatTK(khachhang);
+                    dathanhtoan = true;
+                    break;
                 }
-                break;
-            } else {
-                TKNganHang tkNganHang = new TKNganHang();
-                tkNganHang.themTk();
-                khachhang.setTkNganHang(tkNganHang);
-                hoadon = new HOADON(TaoMaNgauNhien.generateRandomString(5), khachhang.getId(), dc, HinhThucThanhToan.NGANHANG, TrangThai.CHOXULI);
+                case 2: {
+                    System.out.println("Nhap dia chi giao hang");
+                    String dc = sc.nextLine();
+                    if (khachhang.getTkNganHang() != null) {
+                        hoadon = new HOADON(TaoMaNgauNhien.generateRandomString(5), khachhang.getId(), dc, HinhThucThanhToan.NGANHANG, TrangThai.CHOXULI);
 
-                for (CHITIETGIOHANG chitietgiohang : giohang.getDsGioHang()) {
+                        for (CHITIETGIOHANG chitietgiohang : giohang.getDsGioHang()) {
 
-                    hoadon.themChiTietHoaDon(chitietgiohang.getSanpham(), chitietgiohang.getSoLuong());
+                            hoadon.themChiTietHoaDon(chitietgiohang.getSanpham(), chitietgiohang.getSoLuong());
+                        }
+                        if( diemtichluy != 0){
+                            hoadon.setTongTien(hoadon.tinhTongTien() - diemtichluy);
+                            khachhang.setDiemTichLuy(khachhang.getDiemTichLuy() - diemtichluy);
+                        }
+                        else
+                        hoadon.setTongTien(hoadon.tinhTongTien());
+                        if (khachhang.getTkNganHang().thanhToan(hoadon.getTongTien())) {
+                            danhSachHoaDon.themHoaDon(hoadon);
+                            this.lichSuMuaHang.add(hoadon);
+                            ds.capnhatTK(khachhang);
+                            dathanhtoan = true;
+                        } else {
+                            System.out.println("Khong du so du trong tai khoan");
+                        }
+                        break;
+                    } else {
+                        TKNganHang tkNganHang = new TKNganHang();
+                        tkNganHang.themTk();
+                        khachhang.setTkNganHang(tkNganHang);
+                        hoadon = new HOADON(TaoMaNgauNhien.generateRandomString(5), khachhang.getId(), dc, HinhThucThanhToan.NGANHANG, TrangThai.CHOXULI);
+
+                        for (CHITIETGIOHANG chitietgiohang : giohang.getDsGioHang()) {
+
+                            hoadon.themChiTietHoaDon(chitietgiohang.getSanpham(), chitietgiohang.getSoLuong());
+                        }
+                        if( diemtichluy != 0){
+                            hoadon.setTongTien(hoadon.tinhTongTien() - diemtichluy);
+                            khachhang.setDiemTichLuy(khachhang.getDiemTichLuy() - diemtichluy);
+                        }
+                        hoadon.setTongTien(hoadon.tinhTongTien());
+                        if (khachhang.getTkNganHang().thanhToan(hoadon.getTongTien())) {
+                            danhSachHoaDon.themHoaDon(hoadon);
+                            this.lichSuMuaHang.add(hoadon);
+                            ds.capnhatTK(khachhang);
+                            dathanhtoan = true;
+                        } else {
+                            System.out.println("Khong du so du trong tai khoan");
+                        }
+                        break;
+                    }
                 }
-                hoadon.setTongTien(hoadon.tinhTongTien());
-                if (khachhang.getTkNganHang().thanhToan(hoadon.getTongTien())) {
-                    danhSachHoaDon.themHoaDon(hoadon);
-                    this.lichSuMuaHang.add(hoadon);
-                    ds.capnhatTK(this);
-                    dathanhtoan =true;
-                } else {
-                    System.out.println("Khong du so du trong tai khoan");
+                case 3: {
+                    System.out.println("Thoat");
+                    return;
                 }
-                break;
+                default:
+                    System.out.println("Lua chon khong hop le");
+
             }
         }
-        case 4: {
-            danhSachMaGiamGia.xuatMGG();
-        }
-        case 0: {
-            System.out.println("Thoat");
-
-            break;
-        }
-        default:
-            System.out.println("Lua chon khong hop le");
-
-    }
-}
         try {
             ds.ghiFile();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         try {
             danhSachHoaDon.ghiFile();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
     }
+
     public void TraHang(KHACHHANG khachhang){
         Scanner sc = new Scanner(System.in);
         DanhSachTaiKhoan danhSachTaiKhoan  = new DanhSachTaiKhoan();
@@ -353,6 +383,36 @@ while (true) {
             }
 
         }while (choice != 0);
+
+
+    }
+    public  void napTienVaoTK(KHACHHANG kh){
+        Scanner sc = new Scanner(System.in);
+        DanhSachTaiKhoan danhSachTaiKhoan = new DanhSachTaiKhoan();
+        try {
+            danhSachTaiKhoan.docFile();
+
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        if(kh.getTkNganHang() == null){
+            System.out.println("Ban can liet ket tai khoan ngan hang truoc");
+            TKNganHang  tk = new TKNganHang();
+            tk.themTk();
+            kh.setTkNganHang(tk);
+        }
+        System.out.println("Nhap so tien muon nap ");
+
+        kh.getTkNganHang().guiTien(sc.nextDouble());
+        danhSachTaiKhoan.capnhatTK(kh);
+        try {
+            danhSachTaiKhoan.ghiFile();
+
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
 
 
     }

@@ -152,7 +152,7 @@ public class test {
                         "6.Dat hang \n" +
                         "7.Tra Hang\n"+
                         "8.Danh Gia San Pham \n"+
-                        "9.Xoa Tai Khoan \n" +
+                        "9.Nap tien vao tai khoan \n" +
                         "0.Thoat chuong trinh \n");
                 System.out.println("Nhap Lua chon");
                 choice = sc.nextInt();
@@ -225,6 +225,7 @@ public class test {
                         break;
                     }
                     case 9:{
+                        kh.napTienVaoTK(kh);
                         break;
                     }
                     case 0:{
@@ -322,6 +323,7 @@ public class test {
                         "3.Cap nhat gia ban\n"+
                         "4.Tim Kiem Hang hoa\n"+
                         "5.Xuat Hang \n"+
+                        "6.Kiem tra hoa don nhap hang \n "+
                         "0.Thoat chuong trinh \n");
                 System.out.println("Nhap Lua chon");
                 choice = sc.nextInt();
@@ -356,6 +358,10 @@ public class test {
                     }
                     case 5:{
                         nhanvienkho.xuatKho();
+                        break;
+                    }
+                    case 6:{
+                        nhanvienkho.kiemTraHoaDonNhapHang();
                         break;
                     }
                     case 0: {

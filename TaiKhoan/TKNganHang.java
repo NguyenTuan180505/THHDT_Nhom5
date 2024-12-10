@@ -169,8 +169,6 @@ public class TKNganHang implements Serializable {
         this.sdt=sc.nextLine();
         System.out.println("Nhap cccd");
         this.cccd=sc.nextLine();
-        System.out.println("Nhap so du");
-        this.soDu=sc.nextDouble();
 
     }
 

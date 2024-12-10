@@ -83,7 +83,7 @@ public class NHANVIENGIAOHANG extends  NHANVIEN{
                                  return e;
 
                              } );
-                             khachhang.setDiemTichLuy( khachhang.getDiemTichLuy() + 1) ;
+                             khachhang.setDiemTichLuy( khachhang.getDiemTichLuy() + hoadonCapNhap.getTongTien()*0.01) ;
                              khachhang.setLichSuMuaHang(lichSuMuaHang);
                              danhSachTaiKhoan.capnhatTK(khachhang);
                             danhSachHoaDon.capNhatHoaDon(hoadonCapNhap);

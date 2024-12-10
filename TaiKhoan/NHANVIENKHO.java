@@ -4,6 +4,7 @@ import BanHang.HOADON;
 import BanHang.NHAPHANG;
 import BanHang.SANPHAM;
 import DanhSach.DanhSachHoaDon;
+import DanhSach.DanhSachNhapHang;
 import DanhSach.DanhSachSanPham;
 import Enum.TrangThai;
 import java.util.ArrayList;
@@ -31,9 +32,14 @@ public class NHANVIENKHO extends NHANVIEN{
         Scanner sc = new Scanner(System.in);
         SANPHAM sanpham= new SANPHAM();
         String maSp;
-        System.out.println("Nhap ma san pham ");
+
+        System.out.println("Nhap ma san pham: (0/de thoat) ");
+        while (true) {
             maSp = sc.nextLine();
-        nhaphang.themChiTietNhapHang(maSp);
+            if(maSp.equals("0"))
+                break;
+            nhaphang.themChiTietNhapHang(maSp);
+        }
 
     }
     public void hangTrongKho(){
@@ -45,6 +51,16 @@ public class NHANVIENKHO extends NHANVIEN{
             System.out.println(e.getMessage());
         }
         danhSachSanPham.xuatSanPham();
+    }
+    public  void kiemTraHoaDonNhapHang(){
+        DanhSachNhapHang danhSachNhapHang = new DanhSachNhapHang();
+        try {
+            danhSachNhapHang.docFile();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        danhSachNhapHang.Xuat();
     }
     public void capNhatGiaBan (String maSp,double giaBan){
         DanhSachSanPham danhSachSanPham = new DanhSachSanPham();
@@ -103,6 +119,7 @@ public class NHANVIENKHO extends NHANVIEN{
                     "0.Thoat \n");
             System.out.println("Nhap Lua chon");
             choice = sc.nextInt();
+            sc.nextLine();
             switch (choice) {
                 case 1:
                 {

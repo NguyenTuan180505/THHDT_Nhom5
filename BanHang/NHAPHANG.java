@@ -3,6 +3,8 @@ package BanHang;
 import ChiTiet.CHITIETNHAPHANG;
 import DanhSach.DanhSachNhapHang;
 import DanhSach.DanhSachSanPham;
+import Service.DinhDangTien;
+import Service.TaoMaNgauNhien;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -45,6 +47,7 @@ public class NHAPHANG implements Serializable {
             System.out.println(e.getMessage());
         }
         int soLuong;
+        this.maNhap= TaoMaNgauNhien.generateRandomString(5);
         SANPHAM sanpham = danhSachSanPham.timSanPham(maSp) ;
         if (sanpham == null) {
             sanpham = new SANPHAM();
@@ -55,6 +58,8 @@ public class NHAPHANG implements Serializable {
             System.out.println();
             CHITIETNHAPHANG chiTiet = new CHITIETNHAPHANG(sanpham, soLuong,sanpham.getGiaNhap());
             chiTietNhapHang.add(chiTiet);
+            this.tongSoLuong = this.tongSoLuong + soLuong;
+            this.tongTienNhap = soLuong * sanpham.getGiaNhap();
             danhSachSanPham.themSanPham(sanpham);
         }
         else  {
@@ -62,6 +67,8 @@ public class NHAPHANG implements Serializable {
             soLuong = sc.nextInt();
             sanpham.setSoLuong(sanpham.getSoLuong()+soLuong);
             CHITIETNHAPHANG chiTiet = new CHITIETNHAPHANG(sanpham, soLuong,sanpham.getGiaNhap());
+            this.tongSoLuong= this.tongSoLuong + soLuong;
+            this.tongTienNhap= this.tongTienNhap +  soLuong * sanpham.getGiaNhap();
             chiTietNhapHang.add(chiTiet);
             danhSachSanPham.capNhatSanPham(sanpham);
         }
@@ -99,7 +106,7 @@ public class NHAPHANG implements Serializable {
                 "maNhap='" + maNhap + '\'' +
                 ", ngayNhap=" + ngayNhap +
                 ", tongSoLuong=" + tongSoLuong +
-                ", tongTienNhap=" + tongTienNhap +
+                ", tongTienNhap=" + DinhDangTien.chuyenDoi(tongTienNhap) +
                 ", chiTietNhapHang=" + chiTietNhapHang +
                 '}';
     }
